@@ -18,14 +18,20 @@ public class Agente_Alinear : AgenteComportamiento {
         if (rotationSize < radioObjetivo)
             return direccion;
         float objetivoRotation;
-        if (rotationSize > radioBajaVel) objetivoRotation = agente.rotMax;
-        else objetivoRotation = agente.rotMax * rotationSize / radioBajaVel; objetivoRotation *= rotation / rotationSize;
+        if (rotationSize > radioBajaVel)
+            objetivoRotation = agente.rotMax;
+        else
+            objetivoRotation = agente.rotMax * rotationSize / radioBajaVel;
+        objetivoRotation *= rotation / rotationSize;
         direccion.angular = objetivoRotation - agente.rotacion;
         direccion.angular /= timeToTarget;
-        float angularAccel = Mathf.Abs(direccion.angular); if (angularAccel > agente.acelAngularMax)
+        float angularAccel = Mathf.Abs(direccion.angular);
+        if (angularAccel > agente.acelAngularMax)
         {
-            direccion.angular /= angularAccel; direccion.angular *= agente.acelAngularMax;
+            direccion.angular /= angularAccel;
+            direccion.angular *= agente.acelAngularMax;
         }
-        return direccion; }
-}
+        return direccion;
     }
+}
+    

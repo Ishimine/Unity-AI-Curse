@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AgenteComportamiento : MonoBehaviour
+public class AgenteComportamiento_Prioridad : MonoBehaviour
 {
-    public float peso = 1;
+    public int prioridad = 1;
+    public float peso = 1.0f;
+
+
+
     public GameObject objetivo;
     protected Agente agente;
 
@@ -17,7 +21,7 @@ public class AgenteComportamiento : MonoBehaviour
 
     public virtual void Update()
     {
-        agente.SetDireccion(GetDireccion(), peso);
+        agente.SetDireccion(GetDireccion(), prioridad);
     }
 
 
@@ -31,8 +35,7 @@ public class AgenteComportamiento : MonoBehaviour
         rotacion %= 360.0f;
         if (Mathf.Abs(rotacion) > 180.0f)
         {
-            if (rotacion < 0.0f)
-                rotacion += 360.0f;
+            if (rotacion < 0.0f) rotacion += 360.0f;
             else rotacion -= 360.0f;
         }
         return rotacion;
@@ -42,8 +45,7 @@ public class AgenteComportamiento : MonoBehaviour
     //Orientacion a Vector
     public Vector3 GetOriAsVec(float orientation)
     {
-        Vector3 vector = Vector3.zero;
-        vector.x = Mathf.Sin(orientation * Mathf.Deg2Rad) * 1.0f;
+        Vector3 vector = Vector3.zero; vector.x = Mathf.Sin(orientation * Mathf.Deg2Rad) * 1.0f;
         vector.z = Mathf.Cos(orientation * Mathf.Deg2Rad) * 1.0f;
         return vector.normalized;
     }
